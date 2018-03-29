@@ -1,0 +1,39 @@
+apply plugin: 'checkstyle'
+
+checkstyle {
+    toolVersion = '8.8'
+}
+
+def checkStyleConfigFile = "$project.projectDir/quality_tools/checkstyle.xml"
+
+def htmlEnabled = true
+def xmlEnabled = false
+
+//preBuild.dependsOn 'checkstyle' // build will be failed, if violations were found.
+
+task checkstyle(type: Checkstyle) {
+    description 'Checks if the code meets standards'
+    group 'verification'
+
+    configFile rootProject.file(checkStyleConfigFile)
+    source 'src/main', 'src/release', 'src/androidTest/java'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
+    classpath = files()
+
+    ignoreFailures = false
+    showViolations = false
+
+    reports {
+        xml.enabled = xmlEnabled
+        html.enabled = htmlEnabled
+        html.destination = createOutputFile("checkstyle.html")
+        xml.destination = createOutputFile("checkstyle.xml")
+    }
+}
+
+String createOutputFile(String fileName) {
+    return new File("$project.buildDir/outputs/quality_reports/" + fileName)
+}
