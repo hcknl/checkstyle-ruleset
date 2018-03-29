@@ -7,7 +7,7 @@ Create a folder inside app directory, sample file tree shown below;
 
 app/quality_tools
 
-quality_tools.gradle checkstyle.xml
+quality_tools.gradle and checkstyle.xml
 
 Run it via android studio terminal by calling ./gradlew checkstyle (mac os)
 
