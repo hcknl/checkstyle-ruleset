@@ -226,10 +226,10 @@
         <module name="PackageAnnotation">
             <property name="severity" value="ignore" />
         </module>
-        <module name="Suppressignores">
+        <module name="SuppressWarnings">
             <property name="severity" value="ignore" />
         </module>
-        <module name="SuppressignoresHolder">
+        <module name="SuppressWarningsHolder">
             <property name="severity" value="ignore" />
         </module>
 
